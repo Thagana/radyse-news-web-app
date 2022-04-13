@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import Helmet from 'react-helmet';
+import { createStore, StoreProvider as Provider } from 'easy-peasy';
+
+import Routes from './routes/Routes';
+import model from './store/model';
+
+const store = createStore(model);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+        <Helmet titleTemplate='%s - Ultimate News' defaultTitle='Ultimate News'>
+          <meta charSet='utf-8' />
+          <link href='https://app.ultimatenews.xyz' rel="canonical" />
+        </Helmet>
+        <Routes />
+    </Provider>
   );
 }
 
