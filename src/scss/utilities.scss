@@ -1,0 +1,84 @@
+    /* SCSS HEX */
+    $white: #ffffff;
+    $dark-sea-green: #83b692ff;
+    $melon: #f9ada0ff;
+    $brink-pink: #f9627dff;
+    $cinnamon-satin: #c65b7cff;
+    $dark-byzantium: #5b3758ff;
+    $font-family: 'Source Code Pro', monospace;
+    $media-desktop: "only screen and (max-width : 1024px)";
+    $media-tablet: "only screen and (max-width : 768px)";
+    $media-mobile: "only screen and (max-width : 600px)";
+    $media-mobile-sm: "only screen and (max-width : 480px)";
+    /* SCSS Gradient */
+    $gradient-top: linear-gradient(
+      0deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-right: linear-gradient(
+      90deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-bottom: linear-gradient(
+      180deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-left: linear-gradient(
+      270deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-top-right: linear-gradient(
+      45deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-bottom-right: linear-gradient(
+      135deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-top-left: linear-gradient(
+      225deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-bottom-left: linear-gradient(
+      315deg,
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );
+    $gradient-radial: radial-gradient(
+      #83b692ff,
+      #f9ada0ff,
+      #f9627dff,
+      #c65b7cff,
+      #5b3758ff
+    );

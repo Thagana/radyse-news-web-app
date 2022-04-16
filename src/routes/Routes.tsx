@@ -6,6 +6,9 @@ import PrivateRoute from './PrivateRoutes';
 import SignIn from '../views/Auth/SignIn';
 import Verify from '../views/Auth/Verify';
 import Home from '../views/Home';
+import Subscription from '../views/Subscription';
+import Profile from '../views/Profile';
+import Save from '../views/Save';
 
 export default function AppRoutes() {
     return (
@@ -13,9 +16,12 @@ export default function AppRoutes() {
             <Routes>
                 <Route path='/' element={<PrivateRoute />}>
                     <Route path='/' element={<Home />} />
+                    <Route path='/save' element={<Save />} />
+                    <Route path='/subscription' element={<Subscription />} />
+                    <Route path='/profile' element={<Profile />} />
                 </Route>
                 <Route path='/login' element={<SignIn />} />
-                <Route path='/verify' element={<Verify />} />
+                <Route path='/verify-code' element={<Verify />} />
             </Routes>
         </Router>
     )

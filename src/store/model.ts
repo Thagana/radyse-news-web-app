@@ -1,5 +1,5 @@
 const model = {
-    name: 'My Name is'
+    name: 'Samuel Mothwa'
 }
 
 export default model;
