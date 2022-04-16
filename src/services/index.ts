@@ -64,9 +64,9 @@ const verifyCode = (code: string) => {
 }
 
 
-const fetchNews = () => {
+const fetchNews = (page = 1, size = 10) => {
     return new Promise((resolve, reject) => {
-        Axios.get(`${config.SERVER_URL}/news/headlines`).then((response) => {
+        Axios.get(`${config.SERVER_URL}/news/headlines?page=${page}&size=${size}`).then((response) => {
             const responseData = response.data as {
                 data: {
                     data: Article[]

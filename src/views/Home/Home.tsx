@@ -1,44 +1,37 @@
 import * as React from 'react'
 import Template from '../Template';
-import Notification from 'antd/es/notification'
 
 import './Home.scss';
 
-import Network from '../../services';
-
 import ArticleList from '../../components/CardList/CardList';
-import IArticle from '../../interface/Article.interface';
+
+import useFetch from '../../hooks/useFetchArticles';
 
 export default function Home() {
+
+  const [page, setPage] = React.useState(1);
+  const { loading, error, articles, hasMore } = useFetch(page);
+  
   const mounted = React.useRef(true);
-  const [articles, setArticles] = React.useState<IArticle[]>([]);
-  const fetchNews = async () => {
-    try {
-      const response = await Network.fetchNews() as {
-        data: IArticle[]
-        success: boolean
-      };
-      const { data, success } = response;
-      console.log('xxxxxxxx', data, success);
-      if (success) {
-        if (mounted.current) {
-          setArticles(data);
-        }
-      } else {
-        Notification.error({
-          message: 'Something went wrong please try again later'
-        })
-      }
-    } catch (error) {
-      console.log(error);
-      Notification.error({
-        message: 'Something went wrong please try again later'
-      })
+  const loader = React.useRef(null);
+
+
+  const handleObserver = React.useCallback((entries) => {
+    const target = entries[0];
+    if (target.isIntersecting && hasMore) {
+      setPage((prev) => prev + 1);
     }
-  }
+  }, []);
+
   React.useEffect(() => {
-    fetchNews();
-  },[])
+    const option = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 0
+    };
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
+  }, [handleObserver]);
 
   React.useEffect(() => {
     return () => {
@@ -50,6 +43,9 @@ export default function Home() {
     <Template>
       <div className='container'>
         <ArticleList data={articles} />
+        {loading && <div>LOADING ...</div>}
+        {error && <div> ERROR </div>}
+        <div ref={loader} />
       </div>
     </Template>
   )
