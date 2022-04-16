@@ -1,0 +1,28 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    .card-item {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        align-items: center;
+        margin: 1rem;
+        background-color: rgb(230, 189, 10);
+        border-radius: 1rem;
+        border: 0.5rem solid rgb(230, 189, 10);
+        width: 25rem;
+        color: #fff;
+        :hover {
+            cursor: pointer;
+        }
+        .name {
+            margin: 1rem;
+        }
+        .icon {
+            margin: 1rem;
+        }
+    }
+}

@@ -80,7 +80,22 @@ const fetchNews = (page = 1, size = 10) => {
     })
 }
 
+const fetchSettings = () => {
+    return new Promise((resolve, reject) => {
+        Axios.get(`${config.SERVER_URL}/user/settings`).then((response) => {
+            const responseData = response.data as {
+                data: {
+                    data: { location: string, language: string, pushState: string }
+                },
+                success: boolean
+            }
+            resolve(responseData);
+        }).catch((error) => {
+            reject(error);
+        })
+    })
+}
 
-const network  = { checkUser, checkToken, signIn, verifyCode, fetchNews };
+const network  = { checkUser, checkToken, signIn, verifyCode, fetchNews, fetchSettings };
 
 export default network;

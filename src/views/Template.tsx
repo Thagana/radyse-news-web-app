@@ -123,7 +123,7 @@ export default function Navigation(props: Props) {
         <Content
           className='site-layout-background'
           style={{
-            margin: "24px 16px",
+            margin: "1rem 2rem 0rem 15rem",
             padding: 24,
             minHeight: "100vh",
             overflowY: "scroll",

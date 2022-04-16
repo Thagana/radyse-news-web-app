@@ -1,7 +1,9 @@
-import React from 'react'
+import * as React from 'react'
+
+import Template from '../Template';
 
 export default function Subscription() {
   return (
-    <div>Coming Soon</div>
+    <Template>Coming Soon</Template>
   )
 }
