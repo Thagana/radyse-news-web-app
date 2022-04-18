@@ -109,11 +109,10 @@ const fetchSettings = () => {
 };
 
 const updateSettings = (type: string, values: any) => {
-  switch (type) {
-    case "SET_NAME":
       return new Promise((resolve, reject) => {
         Axios.post(`${config.SERVER_URL}/user/update_settings`, {
           type,
+          state: values.state,
           firstName: values.firstName,
           lastName: values.lastName,
         })
@@ -128,11 +127,6 @@ const updateSettings = (type: string, values: any) => {
             reject(error);
           });
       });
-    default:
-      return new Promise((resolve, reject) => {
-        reject("Could not find setting type");
-      });
-  }
 };
 
 const network = {

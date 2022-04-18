@@ -40,7 +40,7 @@ export default function Home() {
   },[]);
 
   return (
-    <Template>
+    <Template activeKey='1'>
       <div className='container'>
         <ArticleList data={articles} />
         {loading && <div>LOADING ...</div>}

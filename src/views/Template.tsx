@@ -18,10 +18,11 @@ const { Header, Sider, Content } = Layout;
 
 type Props = {
   children: React.ReactChild;
+  activeKey: string
 };
 
 export default function Navigation(props: Props) {
-  const { children } = props;
+  const { children, activeKey } = props;
   const [collapsed, setCollapsed] = React.useState(false);
   const [isOnline, setOnline] = React.useState(true);
 
@@ -61,7 +62,7 @@ export default function Navigation(props: Props) {
             alt='Northern Breeze'
           />
         </div>
-        <Menu theme='dark' mode='inline' defaultSelectedKeys={["1"]}>
+        <Menu theme='dark' mode='inline' selectedKeys={[activeKey]}>
           <Menu.Item
             key='1'
             icon={<HomeOutlined />}
