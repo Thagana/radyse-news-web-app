@@ -36,7 +36,6 @@ function useFetch(page: number) {
   React.useEffect(() => {
     sendQuery(page);
   }, [sendQuery, page]);
-  console.log(articles);
   return { loading, error, articles, hasMore };
 }
 

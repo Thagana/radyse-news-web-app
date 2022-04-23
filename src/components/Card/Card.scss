@@ -1,0 +1,26 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  background-color: #e97340;
+  overflow: hidden;
+  margin: 1rem;
+  box-shadow: 0 20px 34px hsla(20deg, 1%, 52%, 0.29);
+  width: min(90%, 60rem);
+  height: 25rem;
+  
+  img {
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    display: block;
+    clip-path: polygon(-4px -4px, 100.4% -3px, 91.2% 102.57%, -0.8% 102.97%);
+  }
+
+  .card-details {
+    padding: 1.5rem;
+  }
+  :hover {
+      cursor: pointer;
+  }
+}
