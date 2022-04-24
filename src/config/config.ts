@@ -3,7 +3,7 @@ const dev = {
 }
 
 const prod = {
-    SERVER_URL: 'https://theultimatenews.herokuapp.com'
+    SERVER_URL: 'https://ultimate-news-api.herokuapp.com'
 }
 
 export const config = process.env.NODE_ENV === 'production' ? prod : dev;
