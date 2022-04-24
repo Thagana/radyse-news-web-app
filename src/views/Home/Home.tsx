@@ -21,7 +21,7 @@ export default function Home() {
     if (target.isIntersecting && hasMore) {
       setPage((prev) => prev + 1);
     }
-  }, []);
+  }, [hasMore]);
 
   React.useEffect(() => {
     const option = {

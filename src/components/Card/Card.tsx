@@ -1,9 +1,8 @@
 import * as React from "react";
-import Card from "antd/es/card";
 import Description from "../Description";
 import IArticle from "../../interface/Article.interface";
 
-const { Meta } = Card;
+import "./Card.scss";
 
 interface Props {
   item: IArticle;
@@ -12,18 +11,28 @@ interface Props {
 export default function Article(props: Props) {
   const { item } = props;
   const handleClick = () => {
-    window.open(item.url, "_blank")
-  }
+    window.open(item.url, "_blank");
+  };
+
+  const handleBookMark = () => {
+    console.log('book marked!')
+  };
+
   return (
-    <Card
-      hoverable
-      style={{ width: '28rem', margin: '0.5rem' }}
-      cover={<img alt='example' src={item.urlToImage} 
-      onClick={handleClick}
-      />
-    }
-    >
-      <Meta title={item.title} description={<Description description={item.description}  source={item.source} publishedAt={item.publishedAt} />} />
-    </Card>
+    <div className='card-container'>
+      <img src={item.urlToImage} alt={item.title} />
+      <div className='card-details'>
+        <h2 onClick={handleClick}>{item.title}</h2>
+        <p>
+          <Description
+            description={item.description}
+            source={item.source}
+            publishedAt={item.publishedAt}
+            handleBookMark={handleBookMark}
+            handleClick={handleClick}
+          />
+        </p>
+      </div>
+    </div>
   );
 }
