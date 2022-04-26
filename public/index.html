@@ -5,10 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="The Ultimate News"
-      content="Live news updates"
-    />
+    <meta name="The Ultimate News" content="Live news updates" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>The Ultimate News</title>
@@ -16,5 +13,22 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script
+      src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+      async=""
+    ></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function () {
+        OneSignal.init({
+          appId: "f7d65d39-d59e-4a96-830d-ca0cfb06db59",
+          safari_web_id: "",
+          notifyButton: {
+            enable: true,
+          },
+          subdomainName: "app-ultimate",
+        });
+      });
+    </script>
   </body>
 </html>

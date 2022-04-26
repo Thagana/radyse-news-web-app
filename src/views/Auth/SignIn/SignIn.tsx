@@ -10,9 +10,12 @@ import './SignIn.scss';
 
 export default function SignIn() {
   const [email, setEmail] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+
   const navigate = useNavigate();
   const handleSubmit = async (event: React.SyntheticEvent) => {
     try {
+      setLoading(true);
       event.preventDefault();
       const response = await Network.signIn(email) as {
         success: boolean,
@@ -34,6 +37,7 @@ export default function SignIn() {
             'Sign In failed'
         });
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
       Notification.open({
@@ -41,6 +45,7 @@ export default function SignIn() {
         description:
           'Something Went wrong please try again later'
       });
+      setLoading(false);
     }
   }
   return (
@@ -55,7 +60,7 @@ export default function SignIn() {
           </div>
           <div className='form-group'>
             <Button type='submit' design='primary long' disabled={!email} >
-              Send
+              { loading ? 'LOADING ...': 'SUBMIT' }
             </Button>
           </div>
         </form>

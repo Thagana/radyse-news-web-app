@@ -9,10 +9,12 @@ import './Verify.scss';
 
 export default function Verify() {
   const [code, setCode] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     try {
+      setLoading(true);
       event.preventDefault();
       const response = await Network.verifyCode(code) as {
         success: boolean,
@@ -35,6 +37,7 @@ export default function Verify() {
             'Sign In failed'
         });
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
       Notification.open({
@@ -42,6 +45,7 @@ export default function Verify() {
         description:
           'Something Went wrong please try again later'
       });
+      setLoading(true);
     }
   }
   return (
@@ -56,7 +60,7 @@ export default function Verify() {
           </div>
           <div className='form-group'>
             <Button type='submit' design='primary long' disabled={!code} >
-              Send
+              {loading ? 'LOADING ...' : 'SUBMIT'}
             </Button>
           </div>
         </form>

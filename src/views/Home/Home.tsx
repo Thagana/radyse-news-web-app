@@ -42,9 +42,9 @@ export default function Home() {
   return (
     <Template activeKey='1'>
       <div className='container'>
-        <ArticleList data={articles} />
-        {loading && <div>LOADING ...</div>}
-        {error && <div> ERROR </div>}
+        <ArticleList data={articles} isLocal={false} />
+        {loading && !error && <div>LOADING ...</div>}
+        {error && !loading && <div> ERROR </div>}
         <div ref={loader} />
       </div>
     </Template>

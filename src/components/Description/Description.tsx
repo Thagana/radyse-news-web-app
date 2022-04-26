@@ -1,6 +1,6 @@
 import * as React from "react";
 import { formatDistance } from "date-fns";
-import { BookOutlined } from '@ant-design/icons';
+import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import "./Description.scss";
 
 type Props = {
@@ -9,10 +9,11 @@ type Props = {
   publishedAt: string;
   handleBookMark: () => void;
   handleClick: () => void;
+  isLocal: boolean;
 };
 
 export default function Description(props: Props) {
-  const { description, source, publishedAt, handleBookMark, handleClick } = props;
+  const { description, source, publishedAt, handleBookMark, handleClick, isLocal } = props;
   return (
     <div className='description'>
       <div className='description-text' onClick={handleClick}>{description}</div>
@@ -24,7 +25,8 @@ export default function Description(props: Props) {
           })}
         </div>
         <div className="bookmark" onClick={handleBookMark}>
-          <BookOutlined color="#fff"/>
+          {isLocal ? <HeartFilled  style={{ color: '#fff', fontSize: '2rem' }} /> : <HeartOutlined style={{ color: '#fff', fontSize: '2rem' }} /> }
+          
         </div>
       </div>
     </div>
