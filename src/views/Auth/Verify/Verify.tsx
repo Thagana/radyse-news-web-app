@@ -56,7 +56,7 @@ export default function Verify() {
         </div>
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
-            <input className='form-control' placeholder='Enter Email' value={code} onChange={(val) => setCode(val.target.value)} />
+            <input className='form-control' placeholder='Enter OTP code' value={code} onChange={(val) => setCode(val.target.value)} />
           </div>
           <div className='form-group'>
             <Button type='submit' design='primary long' disabled={!code} >

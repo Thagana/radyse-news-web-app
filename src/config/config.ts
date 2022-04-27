@@ -1,9 +1,9 @@
 const dev = {
-    SERVER_URL: 'http://localhost:4001'
+    SERVER_URL: process.env.REACT_APP_API_URL || ''
 }
 
 const prod = {
-    SERVER_URL: 'https://ultimate-news-api.herokuapp.com'
+    SERVER_URL: process.env.REACT_APP_API_URL || ''
 }
 
 export const config = process.env.NODE_ENV === 'production' ? prod : dev;
