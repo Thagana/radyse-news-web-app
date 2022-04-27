@@ -10,7 +10,7 @@ const store = createStore(model);
 function App() {
   return (
     <Provider store={store}>
-        <Helmet titleTemplate='%s - Ultimate News' defaultTitle='Ultimate News'>
+        <Helmet titleTemplate='%s - OvalBark' defaultTitle='OvalBark'>
           <meta charSet='utf-8' />
           <link href='https://app.ultimatenews.xyz' rel="canonical" />
         </Helmet>
