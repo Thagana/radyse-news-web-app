@@ -6,17 +6,24 @@ import Notification from 'antd/es/notification';
 
 import Network from '../../../services/index';
 
+import validateEmail from '../../../helpers/validateEmail';
+
 import './SignIn.scss';
 
 export default function SignIn() {
   const [email, setEmail] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const [emailValid, setEmailValid] = React.useState(false);
 
   const navigate = useNavigate();
   const handleSubmit = async (event: React.SyntheticEvent) => {
     try {
       setLoading(true);
       event.preventDefault();
+      if (!validateEmail) {
+        setEmailValid(true);
+        return;
+      }
       const response = await Network.signIn(email) as {
         success: boolean,
         message: string
@@ -56,7 +63,12 @@ export default function SignIn() {
         </div>
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
-            <input className='form-control' type='email' placeholder='Enter Email' value={email} onChange={(val) => setEmail(val.target.value)} />
+            <input className={`form-control ${emailValid ? 'is-invalid' : ''}`} type='email' placeholder='Enter Email' value={email} onChange={(val) => setEmail(val.target.value)} />
+            {emailValid && (
+              <small id="passwordHelpInline" className="invalid-feedback">
+                Email entered is not valid
+              </small>
+            )}
           </div>
           <div className='form-group'>
             <Button type='submit' design='primary long' disabled={!email} >
