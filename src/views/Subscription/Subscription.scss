@@ -1,6 +1,95 @@
 .subscription {
+  $text-color1: #080f1a;
+  $text-color2: #73829e;
+  $btn-color: #303ca5;
+  $pricebg-color: #f4f6fc;
+  .cardWrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .pricingCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 2rem;
+    min-width: 10rem;
+    max-width: 20rem;
+    min-height: 40rem;
+  }
+  .planName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .planPriceDescription {
+    font-size: 0.9rem;
+    color: $text-color2;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .priceDiv {
+    background-color: $pricebg-color;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    margin-bottom: 2rem;
+  }
+
+  .priceDiv sup {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .priceDiv span {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    margin-left: -0.7rem;
+  }
+
+  .description {
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    border: 2px solid $btn-color;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #fff;
+    color: $btn-color;
+    margin-bottom: 0.5rem;
+  }
+  .underBtnText {
+    font-size: 0.9rem;
+    color: $text-color2;
+    margin-bottom: 2rem;
+  }
+  .whatsIncluded {
+    font-size: 0.9rem;
+    color: $text-color2;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  ul li {
+    margin-bottom: 1.5rem;
+    border-bottom: dotted 2px rgb(211, 206, 206);
+  }
 }
