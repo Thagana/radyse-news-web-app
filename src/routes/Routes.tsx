@@ -9,6 +9,7 @@ import Home from '../views/Home';
 import Subscription from '../views/Subscription';
 import Profile from '../views/Profile';
 import Save from '../views/Save';
+import CreateSubscription from '../views/Subscription/create';
 
 export default function AppRoutes() {
     return (
@@ -18,6 +19,7 @@ export default function AppRoutes() {
                     <Route path='/' element={<Home />} />
                     <Route path='/save' element={<Save />} />
                     <Route path='/subscription' element={<Subscription />} />
+                    <Route path='/subscription/create' element={<CreateSubscription />} />
                     <Route path='/profile' element={<Profile />} />
                 </Route>
                 <Route path='/login' element={<SignIn />} />

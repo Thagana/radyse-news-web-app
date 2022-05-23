@@ -1,5 +1,5 @@
 const dev = {
-    SERVER_URL: process.env.REACT_APP_API_URL_PROD || ''
+    SERVER_URL: process.env.REACT_APP_API_URL_DEV|| ''
 }
 
 const prod = {

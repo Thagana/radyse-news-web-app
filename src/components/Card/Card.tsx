@@ -37,7 +37,7 @@ export default function Article(props: Props) {
       <img src={item.urlToImage} alt={item.title} />
       <div className='card-details'>
         <h2 onClick={handleClick}>{item.title}</h2>
-        <p>
+        <div>
           <Description
             description={item.description}
             source={item.source}
@@ -46,7 +46,7 @@ export default function Article(props: Props) {
             handleClick={handleClick}
             isLocal={isLocal}
           />
-        </p>
+        </div>
       </div>
     </div>
   );

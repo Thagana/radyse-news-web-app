@@ -1,0 +1,52 @@
+.subscription-card {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-right: 6rem;
+    margin-left: 6rem;
+    background-color: aliceblue;
+    border-radius: 0.4rem;
+    align-items: center;
+    .header {
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    .body {
+        display: flex;
+        flex-direction: row;
+        padding: 2rem;
+        align-items: center;
+        .status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 2rem;
+            background-color: rgb(16, 179, 16);
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            margin: 1rem;
+            color: white;
+        }
+        .price {
+            font-size: 1.5rem;
+            margin: 1rem;
+            color: green;
+        }
+        .space {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+        .start {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin: 1rem;
+        }
+        .end {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin: 1rem;
+        }
+    }
+}
