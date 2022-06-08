@@ -72,7 +72,7 @@ export default function Show(props: Props) {
         dataIndex='firstName'
         key='firstName'
         render={(_: any, record: any) => (
-          <span>{record.name ? record.name : "CANCELED"}</span>
+          <span>{record.plan.name ? record.plan.name : "CANCELED"}</span>
         )}
       />
       <Column
@@ -81,7 +81,7 @@ export default function Show(props: Props) {
         key='amount'
         render={(_: any, record: any) => (
           <span>
-            {record.status !== "non-renewing" ? `${record.currency} ${record.amount / 100}` : 'N/A'}
+            {record.status !== "non-renewing" ? `${record.plan.currency} ${record.amount / 100}` : 'N/A'}
           </span>
         )}
       />
