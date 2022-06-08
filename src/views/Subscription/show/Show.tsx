@@ -6,9 +6,6 @@ import "./Show.scss";
 import { DataSub } from "../../../interface/Subscription.interface";
 import { format, parseISO } from "date-fns";
 import Button from "../../../components/common/Button";
-import Notification from "antd/es/notification";
-
-import Adaptor from "../../../services";
 
 const { Column } = Table;
 
@@ -18,48 +15,6 @@ type Props = {
 
 export default function Show(props: Props) {
   const { subs } = props;
-
-  // const disableSub = async (token: string, code: string, state: string) => {
-  //   try {
-  //     switch (state) {
-  //       case "active":
-  //         {
-  //           const response = await Adaptor.disableSubscription(code, token);
-  //           if (!response.success) {
-  //             Notification.error({
-  //               message: response.message,
-  //             });
-  //           } else {
-  //             Notification.success({
-  //               message: response.message,
-  //             });
-  //           }
-  //         }
-  //         break;
-  //       case "non-renewing":
-  //         {
-  //           const response = await Adaptor.enableSubscription(code, token);
-  //           if (!response.success) {
-  //             Notification.error({
-  //               message: response.message,
-  //             });
-  //           } else {
-  //             Notification.success({
-  //               message: response.message,
-  //             });
-  //           }
-  //         }
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     Notification.error({
-  //       message: "Something went wrong please try again",
-  //     });
-  //   }
-  // };
 
   const changeDate = async (code: string) => {};
 
