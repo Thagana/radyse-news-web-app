@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
 
+import './Button.scss';
+
 interface Props {
-    children: string;
+    children: React.ReactChild | string;
     type?: 'submit' | 'button',
     design?: 'primary' | 'secondary' | 'primary long'
     onClick?: () => void;
@@ -21,7 +23,9 @@ export default function Button(props: Props) {
         className={design}
         disabled={disabled}
     >
-        {children}
+      <div className='button-children'>
+      {children}
+      </div>
     </motion.button>
   )
 }
