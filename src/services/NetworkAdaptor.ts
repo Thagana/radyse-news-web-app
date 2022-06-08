@@ -171,6 +171,30 @@ const verifyTransaction = (reference: string) => {
   })
 }
 
+const disableSubscription = (code: string, token: string) => {
+  return new Promise<{ success: boolean, message: string }>((resolve, reject) => {
+    Axios.post(`${config.SERVER_URL}/subscriptions/disable`, {
+      code,
+      token
+    }).then((response) => {
+      const data = response.data;
+      resolve(data);
+    }).catch((error) => reject(error))
+  })
+}
+
+const enableSubscription = (code: string, token: string) => {
+  return new Promise<{ success: boolean, message: string }>((resolve, reject) => {
+    Axios.post(`${config.SERVER_URL}/subscriptions/enable`, {
+      code,
+      token
+    }).then((response) => {
+      const data = response.data;
+      resolve(data);
+    }).catch((error) => reject(error))
+  })
+}
+
 const network = {
   checkUser,
   checkToken,
@@ -181,7 +205,9 @@ const network = {
   updateSettings,
   fetchSubs,
   createTransaction,
-  verifyTransaction
+  verifyTransaction,
+  disableSubscription,
+  enableSubscription
 };
 
 export default network;

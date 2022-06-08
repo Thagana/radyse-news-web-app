@@ -1,6 +1,7 @@
 import * as React from "react";
 import Template from "../Template";
 import Notification from "antd/es/notification";
+import { Subscription as ISubs , DataSub} from "../../interface/Subscription.interface";
 
 import { useNavigate } from "react-router-dom";
 import "./Subscription.scss";
@@ -12,11 +13,7 @@ import Show from "./show/Show";
 export default function Subscription() {
   const [SERVER_STATE, setServerState] = React.useState("IDLE");
   const [hasSubs, setHasSubs] = React.useState(false);
-  const [start, setStart] = React.useState(0);
-  const [amount, setAmount] = React.useState(0);
-  const [next_payment_date, setNextPayment] = React.useState("");
-  const [plan, setPlan] = React.useState("");
-  const [status, setStatus] = React.useState("");
+  const [subs, setSubs] = React.useState<DataSub[]>([]);
 
   const navigate = useNavigate();
 
@@ -30,19 +27,9 @@ export default function Subscription() {
         });
         setHasSubs(false);
       } else {
-        const {
-          amount,
-          start,
-          next_payment_date,
-          name,
-          status,
-        } = response.data;
+        const data = response.data;
 
-        setStart(start);
-        setAmount(amount);
-        setPlan(name);
-        setStatus(status);
-        setNextPayment(next_payment_date);
+        setSubs(data);
 
         Notification.success({
           message: response.message,
@@ -59,7 +46,7 @@ export default function Subscription() {
     }
   };
 
-  const processSub = async (reference: string) => {
+  const processSub = React.useCallback(async (reference: string) => {
     try {
       const response = await Adaptor.verifyTransaction(reference);
       if (!response.success) {
@@ -80,7 +67,7 @@ export default function Subscription() {
         message: "Something went wrong please try again later",
       });
     }
-  };
+  }, [navigate]);
 
   React.useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -88,7 +75,7 @@ export default function Subscription() {
     if (reference) {
       processSub(reference);
     }
-  }, []);
+  }, [processSub]);
 
   React.useEffect(() => {
     fetchSub();
@@ -101,13 +88,7 @@ export default function Subscription() {
         {SERVER_STATE === "SUCCESS" && (
           <>
             {hasSubs ? (
-              <Show
-                amount={amount}
-                status={status}
-                name={plan}
-                start={start}
-                end={next_payment_date}
-              />
+              <Show subs={subs}/>
             ) : (
               <CreateSubscription />
             )}
