@@ -1,7 +1,7 @@
 import * as React from "react";
 import Template from "../Template";
 import Notification from "antd/es/notification";
-import { Subscription as ISubs , DataSub} from "../../interface/Subscription.interface";
+import { DataSub} from "../../interface/Subscription.interface";
 
 import { useNavigate } from "react-router-dom";
 import "./Subscription.scss";
