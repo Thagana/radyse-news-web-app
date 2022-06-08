@@ -19,47 +19,47 @@ type Props = {
 export default function Show(props: Props) {
   const { subs } = props;
 
-  const disableSub = async (token: string, code: string, state: string) => {
-    try {
-      switch (state) {
-        case "active":
-          {
-            const response = await Adaptor.disableSubscription(code, token);
-            if (!response.success) {
-              Notification.error({
-                message: response.message,
-              });
-            } else {
-              Notification.success({
-                message: response.message,
-              });
-            }
-          }
-          break;
-        case "non-renewing":
-          {
-            const response = await Adaptor.enableSubscription(code, token);
-            if (!response.success) {
-              Notification.error({
-                message: response.message,
-              });
-            } else {
-              Notification.success({
-                message: response.message,
-              });
-            }
-          }
-          break;
-        default:
-          break;
-      }
-    } catch (error) {
-      console.log(error);
-      Notification.error({
-        message: "Something went wrong please try again",
-      });
-    }
-  };
+  // const disableSub = async (token: string, code: string, state: string) => {
+  //   try {
+  //     switch (state) {
+  //       case "active":
+  //         {
+  //           const response = await Adaptor.disableSubscription(code, token);
+  //           if (!response.success) {
+  //             Notification.error({
+  //               message: response.message,
+  //             });
+  //           } else {
+  //             Notification.success({
+  //               message: response.message,
+  //             });
+  //           }
+  //         }
+  //         break;
+  //       case "non-renewing":
+  //         {
+  //           const response = await Adaptor.enableSubscription(code, token);
+  //           if (!response.success) {
+  //             Notification.error({
+  //               message: response.message,
+  //             });
+  //           } else {
+  //             Notification.success({
+  //               message: response.message,
+  //             });
+  //           }
+  //         }
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     Notification.error({
+  //       message: "Something went wrong please try again",
+  //     });
+  //   }
+  // };
 
   const changeDate = async (code: string) => {};
 
