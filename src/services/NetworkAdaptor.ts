@@ -171,6 +171,12 @@ const verifyTransaction = (reference: string) => {
   })
 }
 
+/**
+ * 
+ * @param code 
+ * @param token 
+ * @returns 
+ */
 const disableSubscription = (code: string, token: string) => {
   return new Promise<{ success: boolean, message: string }>((resolve, reject) => {
     Axios.post(`${config.SERVER_URL}/subscriptions/disable`, {

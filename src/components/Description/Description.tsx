@@ -1,5 +1,5 @@
 import * as React from "react";
-import { formatDistance } from "date-fns";
+import { format } from "date-fns";
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import "./Description.scss";
 
@@ -20,9 +20,7 @@ export default function Description(props: Props) {
       <div className='source-items'>
         Source: <div className='source'>{source}</div> -{" "}
         <div className='date'>
-          {formatDistance(new Date(publishedAt), new Date(), {
-            addSuffix: true,
-          })}
+          {format(new Date(publishedAt), 'yyyy/MM/dd')}
         </div>
         <div className="bookmark" onClick={handleBookMark}>
           {isLocal ? <HeartFilled  style={{ color: '#fff', fontSize: '2rem' }} /> : <HeartOutlined style={{ color: '#fff', fontSize: '2rem' }} /> }
