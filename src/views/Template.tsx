@@ -9,24 +9,26 @@ import {
   UserOutlined,
   LogoutOutlined,
   HomeOutlined,
-  SaveOutlined
+  SaveOutlined,
 } from "@ant-design/icons";
-
-import './Template.scss';
+import { TabBar } from "antd-mobile";
+import "./Template.scss";
 
 const { Header, Sider, Content } = Layout;
 
 type Props = {
   children: React.ReactChild;
-  activeKey: string
+  activeKey: string;
 };
 
 export default function Navigation(props: Props) {
   const { children, activeKey } = props;
   const [collapsed, setCollapsed] = React.useState(false);
   const [isOnline, setOnline] = React.useState(true);
-
+  const [show, setShow] = React.useState(true);
+  
   const navigate = useNavigate();
+
   const toggleNav = () => {
     setCollapsed(!collapsed);
   };
@@ -34,12 +36,16 @@ export default function Navigation(props: Props) {
   window.addEventListener("online", () => {
     setOnline(true);
   });
+
   window.addEventListener("offline", () => {
     setOnline(false);
   });
+
+
   React.useEffect(() => {
     setOnline(navigator.onLine);
   }, []);
+
   if (!isOnline) {
     return (
       <div className='offline-container'>
@@ -47,14 +53,19 @@ export default function Navigation(props: Props) {
       </div>
     );
   }
+
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} 
-        style={{ 
-            position: 'fixed',  
-            minHeight: "100vh",
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        className='sider'
+        style={{
+          position: "fixed",
+          minHeight: "100vh",
         }}
-          >
+      >
         <div className='logo'>
           <img
             src='https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4'
@@ -113,13 +124,33 @@ export default function Navigation(props: Props) {
       </Sider>
       <Layout className='site-layout'>
         <Header className='site-layout-background' style={{ padding: 0 }}>
-          {React.createElement(
+          {show && React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
               className: "trigger",
               onClick: toggleNav,
             }
           )}
+          {!show && React.createElement(() => (
+            <>
+              <TabBar>
+                <TabBar.Item key='home' icon={<HomeOutlined />} title='Home' />
+                <TabBar.Item key='save' icon={<SaveOutlined />} title='Save' />
+                <TabBar.Item
+                  key='subscription'
+                  icon={<WalletOutlined />}
+                  title='Subscription'
+                />
+                <TabBar.Item
+                  key='profile'
+                  icon={<UserOutlined />}
+                  title='Profile'
+                />
+              </TabBar>
+            </>
+          ), {
+            className: "bottom-nav",
+          })}
         </Header>
         <Content
           className='site-layout-background'
