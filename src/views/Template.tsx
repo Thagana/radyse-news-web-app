@@ -75,7 +75,8 @@ export default function Navigation(props: Props) {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        height: '100vh'
       }}>
         <Button
           design='primary'
