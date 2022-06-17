@@ -9,10 +9,10 @@ import "./CreateSubscription.scss";
 
 export default function CreateSubscription() {
   const [SERVER_STATE, setServerState] = React.useState("IDLE");
-  const handleClick = async (type: string) => {
+  const handleClick = async (name: string) => {
     try {
       setServerState("LOADING");
-      const response = await Adaptor.createTransaction("Intrigued");
+      const response = await Adaptor.createTransaction(name);
       if (!response.success) {
         Notification.error({
           message: response.message,
@@ -50,12 +50,12 @@ export default function CreateSubscription() {
               <p className='planPriceDescription'>
                 A starter plan for getting up to date with the platform
               </p>
-              <div className='priceDiv'>$2 monthly</div>
+              <div className='priceDiv'>$15 monthly</div>
               <p className='whatsIncluded'>What's included:</p>
               <ul>
-                <li>Up to 2 Email News updates per/day</li>
-                <li>Up to 2 Mobile Push News updates per/day</li>
-                <li>Up to 2 SMS Push News updates per/day</li>
+                <li>Up to 4 Email News updates per/day</li>
+                <li>Up to 4 Mobile Push News updates per/day</li>
+                <li>Up to 4 SMS Push News updates per/day</li>
               </ul>
               <div>
                 <Button
@@ -77,13 +77,13 @@ export default function CreateSubscription() {
             >
               <p className='planName'>Fanatic</p>
               <p className='planPriceDescription'>
-                More features than the Intrigued plan
+                Plus features than the Intrigued plan
               </p>
-              <div className='priceDiv'>$ 3 monthly</div>
+              <div className='priceDiv'>$ 30 monthly</div>
               <p className='whatsIncluded'>What's included:</p>
               <ul>
-                <li>Up to 4 Mobile Push News updates per/day</li>
-                <li>Up to 4 SMS Push News updates per/day</li>
+                <li>Unlimited Mobile Push News updates per/day</li>
+                <li>Unlimited SMS Push News updates per/day</li>
                 <li>News Analytics (Compare news articles)</li>
               </ul>
               <div>
@@ -91,36 +91,6 @@ export default function CreateSubscription() {
                   design='primary long'
                   onClick={() => {
                     handleClick("Fanatic");
-                  }}
-                >
-                  Subscribe
-                </Button>
-              </div>
-            </motion.div>
-            <motion.div
-              whileHover={{
-                scale: 1.1,
-                transition: { duration: 0.2 },
-              }}
-              className='pricingCard'
-            >
-              <p className='planName'>In The Know</p>
-              <p className='planPriceDescription'>
-                All plus News Settings and Analytics
-              </p>
-              <div className='priceDiv'>$ 10 monthly</div>
-              <p className='whatsIncluded'>What's included:</p>
-              <ul>
-                <li>Email Notification as they come</li>
-                <li>SMS Notification as they come</li>
-                <li>Mobile Push Notification as they come</li>
-                <li>Get News Analytics</li>
-              </ul>
-              <div>
-                <Button
-                  design='primary long'
-                  onClick={() => {
-                    handleClick("In The Know");
                   }}
                 >
                   Subscribe

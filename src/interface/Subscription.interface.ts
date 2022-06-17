@@ -1,5 +1,5 @@
 export interface Subscription {
-    data: DataSub[],
+    data: DataSub,
     message: string;
     success: boolean;
 }
@@ -21,8 +21,8 @@ export interface DataSub {
     updatedAt: string;
     createdAt: string;
     next_payment_date: string;
-    email_token: string;
-    subscription_code: string;
+    token: string;
+    code: string;
     user_id: string;
     name: string;
 };
