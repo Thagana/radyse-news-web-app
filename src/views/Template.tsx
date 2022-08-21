@@ -11,7 +11,6 @@ import {
   HomeOutlined,
   SaveOutlined,
 } from "@ant-design/icons";
-import { TabBar } from "antd-mobile";
 import "./Template.scss";
 import Button from "../components/common/Button";
 
