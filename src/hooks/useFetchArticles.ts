@@ -14,7 +14,7 @@ function useFetch(page: number) {
     try {
       setLoading(true);
       setError(false);
-      const response = (await Network.fetchNews(page)) as {
+      const response = await Network.fetchNews(page) as {
         data: IArticle[];
         success: boolean;
       };

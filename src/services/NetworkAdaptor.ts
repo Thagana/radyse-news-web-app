@@ -84,7 +84,7 @@ const fetchNews = (page = 1, size = 10) => {
         };
         resolve({
           success: responseData.success,
-          data: responseData.data.data,
+          data: responseData.data,
         });
       })
       .catch((error) => {

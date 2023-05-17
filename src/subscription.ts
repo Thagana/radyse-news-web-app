@@ -4,7 +4,12 @@ import Axios from "./services/configs";
 const convertedVapidKey = urlBase64ToUint8Array(
   process.env.REACT_APP_PUBLIC_VAPID_KEY || ""
 );
-
+/**
+ * Converts a base64-encoded string to a Uint8Array.
+ *
+ * @param {string} base64String - The base64-encoded string to convert.
+ * @return {Uint8Array} - The resulting Uint8Array.
+ */
 function urlBase64ToUint8Array(base64String: string) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   // eslint-disable-next-line
