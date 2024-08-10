@@ -10,14 +10,11 @@ function useFetch(page: number) {
   const [articles, setArticles] = React.useState<IArticle[]>([]);
   const [hasMore, setHasMore] = React.useState(true);
 
-  const sendQuery = React.useCallback(async (page) => {
+  const sendQuery = React.useCallback(async (page: number) => {
     try {
       setLoading(true);
       setError(false);
-      const response = (await Network.fetchNews(page)) as {
-        data: IArticle[];
-        success: boolean;
-      };
+      const response = await Network.fetchNews(page)
       if (response.success) {
         setArticles((prev) => Array.from(new UniqueNameSet([...prev, ...response.data]).values()));
         setHasMore(response.data.length > 0);

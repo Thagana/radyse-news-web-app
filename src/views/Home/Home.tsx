@@ -6,6 +6,7 @@ import "./Home.scss";
 import ArticleList from "../../components/CardList/CardList";
 
 import useFetch from "../../hooks/useFetchArticles";
+import ArticleListLoading from "../../components/ArticleListLoading";
 
 export default function Home() {
   const [page, setPage] = React.useState(1);
@@ -15,7 +16,7 @@ export default function Home() {
   const loader = React.useRef(null);
 
   const handleObserver = React.useCallback(
-    (entries) => {
+    (entries: any[]) => {
       const target = entries[0];
       if (target.isIntersecting && hasMore) {
         setPage((prev) => prev + 1);
@@ -44,7 +45,7 @@ export default function Home() {
     <Template activeKey='1'>
       <div className='container'>
         <ArticleList data={articles} isLocal={false} />
-        {loading && !error && <div className='loading'>LOADING ...</div>}
+        {loading && !error && <ArticleListLoading itemCount={10} />}
         {error && !loading && (
           <div className='d-flex justify-content-center'> ERROR </div>
         )}
