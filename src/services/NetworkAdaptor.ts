@@ -22,13 +22,10 @@ const checkUser = async () => {
 
 const signIn = async (email: string, password: string) => {
   try {
-    const response = await Axios.post(
-      `${config.SERVER_URL}/auth/login`,
-      {
-        email,
-        password,
-      }
-    );
+    const response = await Axios.post(`${config.SERVER_URL}/auth/login`, {
+      email,
+      password,
+    });
 
     const data = response.data as {
       success: boolean;
@@ -44,12 +41,9 @@ const signIn = async (email: string, password: string) => {
 
 const verifyCode = async (code: string) => {
   try {
-    const response = await Axios.post(
-      `${config.SERVER_URL}/auth/login`,
-      {
-        code,
-      }
-    );
+    const response = await Axios.post(`${config.SERVER_URL}/auth/login`, {
+      code,
+    });
 
     const data = response.data as {
       success: boolean;
@@ -69,9 +63,7 @@ const fetchNews = async (page = 1, size = 10) => {
     );
 
     const responseData = response.data as {
-      data: {
-        data: any[];
-      };
+      data: any[];
       success: boolean;
     };
 
@@ -209,4 +201,3 @@ export default {
   disableSubscription,
   enableSubscription,
 };
-

@@ -31,12 +31,8 @@ export default function Profile() {
     try {
       setServerSate("LOADING");
       const response = await Network.fetchSettings();
-      const { data, success } = response as {
-        data: ISettings;
-        success: boolean;
-      };
+      const { data, success } = response
       if (success) {
-        setSettings(data);
         setServerSate("SUCCESS");
       } else {
         setServerSate("ERROR");
