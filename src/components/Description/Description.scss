@@ -1,22 +1,38 @@
 .description {
-    .description-text {
-        text-decoration: none;
+  .description-text {
+    text-decoration: none;
+  }
+  .source-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .description-footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 1rem 0rem;
+      .source {
+        margin: 0rem 1rem;
+        font-weight: bold;
+      }
+      .date {
+        margin: 0rem 1rem;
+        font-weight: bold;
+      }
+      .bookmark {
+        margin: 0rem 1rem;
+      }
     }
-    .source-items {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin: 1rem 0rem;
-        .source {
-            margin: 0rem 1rem;
-            font-weight: bold;
-        }
-        .date {
-            margin: 0rem 1rem;
-            font-weight: bold;
-        }
-        .bookmark {
-            margin: 0rem 1rem;
+    .menu-container {
+        :hover {
+            cursor: pointer;
         }
     }
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
