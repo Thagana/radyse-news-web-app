@@ -2,7 +2,7 @@ import { config } from "./config/config";
 import Axios from "./services/configs";
 
 const convertedVapidKey = urlBase64ToUint8Array(
-  process.env.REACT_APP_PUBLIC_VAPID_KEY || ""
+  import.meta.env.VITE_APP_PUBLIC_VAPID_KEY || ""
 );
 /**
  * Converts a base64-encoded string to a Uint8Array.

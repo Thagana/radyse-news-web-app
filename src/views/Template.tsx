@@ -1,5 +1,4 @@
 import * as React from "react";
-import Menu from "antd/es/menu";
 import { useNavigate } from "react-router-dom";
 import Layout from "antd/es/layout";
 import {
@@ -12,6 +11,7 @@ import {
   SaveOutlined,
 } from "@ant-design/icons";
 import "./Template.scss";
+import { Menu } from "antd";
 
 const { Header, Sider, Content } = Layout;
 
@@ -23,33 +23,12 @@ type Props = {
 export default function Navigation(props: Props) {
   const { children, activeKey } = props;
   const [collapsed, setCollapsed] = React.useState(false);
-  const [isOnline, setOnline] = React.useState(true);
 
   const navigate = useNavigate();
 
-  const toggleNav = () => {
+  const toggleNav = React.useCallback(() => {
     setCollapsed(!collapsed);
-  };
-
-  window.addEventListener("online", () => {
-    setOnline(true);
-  });
-
-  window.addEventListener("offline", () => {
-    setOnline(false);
-  });
-
-  React.useEffect(() => {
-    setOnline(navigator.onLine);
-  }, []);
-
-  if (!isOnline) {
-    return (
-      <div className='offline-container'>
-        <span>Your offline, no internet connection</span>
-      </div>
-    );
-  }
+  }, [collapsed]);
 
   return (
     <Layout>
@@ -57,70 +36,65 @@ export default function Navigation(props: Props) {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        className='sider'
+        className="sider"
         style={{
           position: "fixed",
           minHeight: "100vh",
         }}
       >
-        <div className='logo'>
+        <div className="logo">
           <img
-            src='https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4'
-            className='brand-logo'
-            alt='Northern Breeze'
+            src="https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4"
+            className="brand-logo"
+            alt="Northern Breeze"
           />
         </div>
-        <Menu theme='dark' mode='inline' selectedKeys={[activeKey]}>
-          <Menu.Item
-            key='1'
-            icon={<HomeOutlined />}
-            onClick={() => {
-              navigate("/");
-            }}
-          >
+        <Menu
+          theme="dark"
+          mode="inline"
+          selectedKeys={[activeKey]}
+          onClick={({ key }) => {
+            switch (key) {
+              case "1":
+                navigate("/");
+                break;
+              case "2":
+                navigate("/save");
+                break;
+              case "4":
+                navigate("/subscription");
+                break;
+              case "7":
+                navigate("/profile");
+                break;
+              case "6":
+                localStorage.clear();
+                navigate("/login");
+                break;
+              default:
+                break;
+            }
+          }}
+        >
+          <Menu.Item key="1" icon={<HomeOutlined />}>
             Articles
           </Menu.Item>
-          <Menu.Item
-            key='2'
-            icon={<SaveOutlined />}
-            onClick={() => {
-              navigate("/save");
-            }}
-          >
+          <Menu.Item key="2" icon={<SaveOutlined />}>
             Save Articles
           </Menu.Item>
-          <Menu.Item
-            key='4'
-            icon={<WalletOutlined />}
-            onClick={() => {
-              navigate("/subscription");
-            }}
-          >
+          <Menu.Item key="4" icon={<WalletOutlined />}>
             Subscriptions
           </Menu.Item>
-          <Menu.Item
-            key='7'
-            icon={<UserOutlined />}
-            onClick={() => {
-              navigate("/profile");
-            }}
-          >
+          <Menu.Item key="7" icon={<UserOutlined />}>
             Profile
           </Menu.Item>
-          <Menu.Item
-            key='6'
-            icon={<LogoutOutlined />}
-            onClick={() => {
-              localStorage.clear();
-              navigate("/login");
-            }}
-          >
+          <Menu.Item key="6" icon={<LogoutOutlined />}>
             LogOut
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout className='site-layout'>
-        <Header className='site-layout-background' style={{ padding: 0 }}>
+      <Layout className="site-layout">
+        <Header className="site-layout-background" style={{ padding: 0 }}>
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
@@ -130,7 +104,7 @@ export default function Navigation(props: Props) {
           )}
         </Header>
         <Content
-          className='site-layout-background'
+          className="site-layout-background"
           style={{
             margin: "1rem 2rem 0rem 15rem",
             padding: 24,
@@ -144,3 +118,4 @@ export default function Navigation(props: Props) {
     </Layout>
   );
 }
+

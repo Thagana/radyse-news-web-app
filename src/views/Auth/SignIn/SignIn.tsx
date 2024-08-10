@@ -1,85 +1,107 @@
-import * as React from 'react'
-import { useNavigate } from 'react-router-dom';
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-import Button from '../../../components/common/Button';
-import Notification from 'antd/es/notification';
+import Button from "../../../components/common/Button";
 
-import Network from '../../../services/index';
+import Notification from "antd/es/notification";
 
-import validateEmail from '../../../helpers/validateEmail';
+import Network from "../../../services/index";
 
-import './SignIn.scss';
+import validateEmail from "../../../helpers/validateEmail";
+
+import "./SignIn.scss";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+type Inputs = {
+  email: string;
+  password: string;
+};
 
 export default function SignIn() {
-  const [email, setEmail] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
-  const [emailValid, setEmailValid] = React.useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<Inputs>();
 
   const navigate = useNavigate();
-  const handleSubmit = async (event: React.SyntheticEvent) => {
-    try {
-      setLoading(true);
-      event.preventDefault();
-      if (!validateEmail) {
-        setEmailValid(true);
-        return;
-      }
-      const response = await Network.signIn(email) as {
-        success: boolean,
-        message: string
-      };
-      if (response.success) {
-        // push to verify
-        Notification.open({
-          message: 'Success',
-          description:
-            response.message
-        });
-        navigate('/verify-code');
-      } else {
-        // show error message
-        Notification.open({
-          message: 'Error',
-          description:
-            'Sign In failed'
-        });
-      }
-      setLoading(false);
-    } catch (error) {
+
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data: { email: string; password: string }) => {
+      return Network.signIn(data.email, data.password);
+    },
+    onError: (error) => {
       console.log(error);
-      Notification.open({
-        message: 'Error',
-        description:
-          'Something Went wrong please try again later'
+      Notification.error({
+        message: "Error",
+        description: "Something went wrong",
       });
-      setLoading(false);
-    }
-  }
+    },
+    onSuccess: (data) => {
+      if (data.success) {
+        const token = data.data.token;
+        localStorage.setItem("authToken", token);
+        navigate('/');
+      } else {
+        Notification.error({
+          message: "Error",
+          description: data.message,
+        });
+      }
+
+    },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const { email, password } = data;
+    mutate({
+      email: email,
+      password: password,
+    });
+  };
+
   return (
-    <div className='signin-container'>
-      <div className='form-container'>
-        <div className='image-container'>
-          <img src='https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4' className='image' alt="Ultimate News" />
+    <div className="signin-container">
+      <div className="form-container">
+        <div className="image-container">
+          <img
+            src="https://avatars.githubusercontent.com/u/68122202?s=400&u=4abc9827a8ca8b9c19b06b9c5c7643c87da51e10&v=4"
+            className="image"
+            alt="Radyse Moon logo"
+          />
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className='form-group'>
-            <input className={`form-control ${emailValid ? 'is-invalid' : ''}`} type='email' placeholder='Enter Email' value={email} onChange={(val) => setEmail(val.target.value)} />
-            {emailValid && (
-              <small id="passwordHelpInline" className="invalid-feedback">
-                Email entered is not valid
-              </small>
-            )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <input
+              {...register("email", {
+                required: true,
+                validate: validateEmail,
+              })}
+              className="form-control"
+              placeholder="Email"
+            />
+            {errors.email && <span>This field is required</span>}
           </div>
-          <div className='form-group'>
-            <Button type='submit' design='primary long' disabled={!email} >
-              { loading ? 'LOADING ...': 'SUBMIT' }
+          <div className="form-group">
+            <input
+              {...register("password", { required: true })}
+              className="form-control"
+              placeholder="Password"
+            />
+            {errors.email && <span>This field is required</span>}
+          </div>
+          <div className="form-group">
+            <Button type="submit" design="primary long" disabled={!isValid}>
+              {isPending ? "LOADING ..." : "SUBMIT"}
             </Button>
           </div>
         </form>
-        <div className='link-container'>
-          <a href='/verify-code'>Verify Code</a>
+        <div className="link-container">
+          <a href="/forgot-password">forgot password</a>
         </div>
       </div>
     </div>
-  )
+  );
 }

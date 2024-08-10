@@ -1,0 +1,17 @@
+@import "../../scss/utilities.scss";
+
+.card-container {
+    display: flex;
+    background-color: white;
+    overflow: hidden;
+    margin: 0.1rem;
+    width: min(90%, 75rem);
+    border-radius: 2rem;
+    .card-top-log {
+      padding: 0.5rem 1rem;
+      .news-log {
+        max-width: 20px;
+        max-height: 20px;
+      }
+    }
+}
