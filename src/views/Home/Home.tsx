@@ -16,7 +16,7 @@ export default function Home() {
   const loader = React.useRef(null);
 
   const handleObserver = React.useCallback(
-    (entries) => {
+    (entries: any[]) => {
       const target = entries[0];
       if (target.isIntersecting && hasMore) {
         setPage((prev) => prev + 1);
